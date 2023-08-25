@@ -1,39 +1,34 @@
 import React from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
 } from "react-router-dom";
-import CreateArea from "./components/CreateArea";
 import Update from "./components/Update";
-import Layout from "./components/Layout";
+import RootLayout from "./components/Layout";
 import Note from "./components/Note";
+import Dashbord from "./components/Dashbord"
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Main />,
-//     children: [
-//       { path: "/createarea", element: <CreateArea /> },
-//       { path: "/notes", element:<Note />  },
-//       { path: "/update/:id", element: <Update /> },
-//     ],
-//   },
-// ]);
+
 
 const App = () => {
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<Dashbord />} />
+      <Route path="/notes" element={<Note />} />
+      <Route path="update/:id" element={<Update />} />
+    </Route>
+  )
+);
+
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="createArea" element={<CreateArea />} />
-            <Route path="/notes" element={<Note />} />
-            <Route path="update/:id" element={<Update />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      {/* <RouterProvider router={router}></RouterProvider> */}
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
     </>
   );
 };

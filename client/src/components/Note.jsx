@@ -34,7 +34,7 @@ const Note = () => {
       .then((res) => {
         console.log(res);
         setNotes(res.data.msg);
-        navigate("/createArea");
+        // navigate("/createArea");
       })
       .catch((err) => {
         console.log(err);

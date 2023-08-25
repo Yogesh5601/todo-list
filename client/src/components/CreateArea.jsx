@@ -29,7 +29,6 @@ note: "",
   const submittodo = (event) => {
     axios.post("http://localhost:5000/note/addnote", todo).then((res) => {
       console.log(res);
-      navigate("/notes")
     });
     setTodo({
       note: "",
